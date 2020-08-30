@@ -8,10 +8,7 @@ import ru.javaops.masterjava.xml.schema.ObjectFactory;
 import ru.javaops.masterjava.xml.schema.Payload;
 import ru.javaops.masterjava.xml.schema.Project;
 import ru.javaops.masterjava.xml.schema.User;
-import ru.javaops.masterjava.xml.util.JaxbParser;
-import ru.javaops.masterjava.xml.util.Schemas;
-import ru.javaops.masterjava.xml.util.StaxStreamProcessor;
-import ru.javaops.masterjava.xml.util.XsltProcessor;
+import ru.javaops.masterjava.xml.util.*;
 
 import javax.xml.stream.events.XMLEvent;
 import java.io.InputStream;
@@ -59,10 +56,11 @@ public class MainXml {
 
     private static Set<User> parseByJaxb(String projectName, URL payloadUrl) throws Exception {
         JaxbParser parser = new JaxbParser(ObjectFactory.class);
+        JaxbUnmarshaller unmarshaller = parser.createUnmarshaller();
         parser.setSchema(Schemas.ofClasspath("payload.xsd"));
         Payload payload;
         try (InputStream is = payloadUrl.openStream()) {
-            payload = parser.unmarshal(is);
+            payload = unmarshaller.unmarshal(is);
         }
 
         Project project = StreamEx.of(payload.getProjects().getProject())
