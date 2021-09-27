@@ -32,3 +32,25 @@ CREATE TABLE user_group (
   group_id INTEGER NOT NULL REFERENCES groups (id),
   CONSTRAINT users_group_idx UNIQUE (user_id, group_id)
 );
+--changeset maxvanny:3
+CREATE TABLE emails
+(
+    id       INTEGER PRIMARY KEY DEFAULT nextval('emails_seq'),
+    sender   INTEGER     NOT NULL REFERENCES addressee (id),
+    receiver INTEGER     NOT NULL REFERENCES addressee (id),
+    header   TEXT        NOT NULL,
+    body     TEXT        NOT NULL
+);
+CREATE SEQUENCE emails_seq START 100000;
+CREATE SEQUENCE addressee_seq START 100000;
+CREATE TABLE addressee
+(
+    id       INTEGER PRIMARY KEY DEFAULT nextval('addressee_seq'),
+    email_id INTEGER NOT NULL REFERENCES emails (id),
+    name     TEXT    NOT NULL
+);
+DROP INDEX CONCURRENTLY email_idx;
+ALTER TABLE users
+    DROP COLUMN email;
+ALTER TABLE users
+    ADD COLUMN email_id INTEGER REFERENCES emails (id) ON UPDATE CASCADE;
