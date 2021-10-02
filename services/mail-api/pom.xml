@@ -21,12 +21,6 @@
             <artifactId>common</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.bertoncelj.jdbi.entitymapper</groupId>
-            <artifactId>jdbi-entity-mapper</artifactId>
-            <version>1.0.0</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
 </project>
