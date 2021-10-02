@@ -1,7 +1,8 @@
 package ru.javaops.masterjava.service.mail;
 
+import ru.javaops.masterjava.service.model.Addressee;
 import javax.jws.WebService;
-import java.util.List;
+import java.util.*;
 
 @WebService(endpointInterface = "ru.javaops.masterjava.service.mail.MailService")
 public class MailServiceImpl implements MailService {
