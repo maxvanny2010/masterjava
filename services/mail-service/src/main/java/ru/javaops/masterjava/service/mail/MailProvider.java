@@ -24,23 +24,28 @@ public final class MailProvider {
         MailHolder.EMAIL = email;
     }
 
+    private static Email createEmailByConfig(final Config config) {
+        Email email = new SimpleEmail();
+        email.setHostName(config.getString("mail.host"));
+        email.setSmtpPort(config.getInt("mail.port"));
+        email.setSslSmtpPort(String.valueOf(config.getInt("mail.port")));
+        email.setAuthenticator(new DefaultAuthenticator(
+                config.getString("mail.username"),
+                config.getString("mail.password")));
+        email.setSSLOnConnect(config.getBoolean("mail.useSSL"));
+        email.setStartTLSEnabled(config.getBoolean("mail.useTSL"));
+        return email;
+    }
+
     public static class MailHolder {
         private static final Config CONFIG;
         private static Email EMAIL;
 
         static {
-            Email email = new SimpleEmail();
             CONFIG = Configs.getConfig("mail.conf", "mail");
-            email.setHostName(CONFIG.getString("mail.host"));
-            email.setSmtpPort(CONFIG.getInt("mail.port"));
-            email.setSslSmtpPort(String.valueOf(CONFIG.getInt("mail.port")));
-            email.setAuthenticator(new DefaultAuthenticator(
-                    CONFIG.getString("mail.username"),
-                    CONFIG.getString("mail.password")));
-            email.setSSLOnConnect(CONFIG.getBoolean("mail.useSSL"));
-            email.setStartTLSEnabled(CONFIG.getBoolean("mail.useTSL"));
-            MailProvider.init(email);
+            MailProvider.init(createEmailByConfig(CONFIG));
         }
+
 
         public static Email instMail() {
             return MailHolder.EMAIL;

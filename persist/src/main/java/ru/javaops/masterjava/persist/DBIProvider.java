@@ -26,7 +26,7 @@ public class DBIProvider {
     }
 
     public static class DBIHolder {
-        static final DBI jDBI;
+        static volatile DBI jDBI;
 
         static {
             final DBI dbi;
@@ -37,7 +37,8 @@ public class DBIProvider {
                 try {
                     log.info("Init jDBI with  JNDI");
                     InitialContext ctx = new InitialContext();
-                    dbi = new DBI((DataSource) ctx.lookup("java:/comp/env/jdbc/masterjava"));
+                    DataSource lookup = (DataSource) ctx.lookup("java:comp/env/jdbc/masterjava");
+                    dbi = new DBI(lookup);
                 } catch (Exception ex) {
                     throw new IllegalStateException("PostgreSQL initialization failed", ex);
                 }
