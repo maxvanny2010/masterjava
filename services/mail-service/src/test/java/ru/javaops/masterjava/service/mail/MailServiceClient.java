@@ -1,6 +1,7 @@
 package ru.javaops.masterjava.service.mail;
 
 import com.google.common.collect.ImmutableList;
+
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import java.net.MalformedURLException;
@@ -16,7 +17,6 @@ public class MailServiceClient {
 
         MailService mailService = service.getPort(MailService.class);
         mailService.sendMail(ImmutableList.of(
-                new Addressee("herokuboot@gmail.com", null),
-                new Addressee("Bad Email <bad_email.ru>")), null, "Subject", "Body");
+                new Addressee("herokuboot@gmail.com", null)), null, "Subject", "Body");
     }
 }

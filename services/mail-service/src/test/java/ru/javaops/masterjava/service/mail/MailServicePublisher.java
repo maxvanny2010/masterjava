@@ -13,7 +13,6 @@ public class MailServicePublisher {
 
     public static void main(String[] args) {
         DBITestProvider.initDBI();
-        Endpoint.publish("http://localhost:8080/mail/mailService", new MailServiceImpl());
 
         Endpoint endpoint = Endpoint.create(new MailServiceImpl());
         List<Source> metadata = ImmutableList.of(
@@ -21,6 +20,6 @@ public class MailServicePublisher {
                         new File("services/mail-service/src/main/webapp/WEB-INF/wsdl/mailService.wsdl")));
 
         endpoint.setMetadata(metadata);
-        endpoint.publish("http://localhost:8080/mail/mailService");
+        endpoint.publish("http://localhost:8888/mail/mailService");
     }
 }
