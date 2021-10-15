@@ -14,9 +14,15 @@ public class MailServiceClient {
                 new URL("http://localhost:8888/mail/mailService?wsdl"),
                 new QName("http://mail.javaops.ru/", "MailServiceImplService"));
 
-
         MailService mailService = service.getPort(MailService.class);
-        mailService.sendToGroup(ImmutableSet.of(
-                new Addressee("herokuboot@gmail.com", null)), null, "Subject", "Body");
+
+        String state = mailService.sendToGroup(ImmutableSet.of(new Addressee("herokuboot@gmail.com", null)), null,
+                "Group mail subject", "Group mail body");
+        System.out.println("Group mail state: " + state);
+
+        GroupResult groupResult = mailService.sendBulk(ImmutableSet.of(
+                new Addressee("Heroku Boot <herokuboot@gmail.com>"),
+                new Addressee("Bad Email <bad_email.ru>")), "Bulk mail subject", "Bulk mail body");
+        System.out.println("\nBulk mail groupResult:\n" + groupResult);
     }
 }
