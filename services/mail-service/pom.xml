@@ -43,14 +43,6 @@
                             </includes>
                             <targetPath>WEB-INF</targetPath>
                         </resource>
-                      <!--  <resource>
-                            <directory>${masterjava.config}</directory>
-                            <includes>
-                                <include>mail.conf</include>
-                            </includes>
-                            <targetPath>WEB-INF/classes</targetPath>
-                            <filtering>true</filtering>
-                        </resource>-->
                     </webResources>
                 </configuration>
             </plugin>
