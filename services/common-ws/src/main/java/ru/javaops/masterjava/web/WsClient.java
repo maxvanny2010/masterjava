@@ -29,6 +29,7 @@ public class WsClient<T> {
 
     public void init(String host, String endpointAddress) {
         this.endpointAddress = HOSTS.getString(host) + endpointAddress;
+
     }
 
     //  Post is not thread-safe (http://stackoverflow.com/a/10601916/548473)
