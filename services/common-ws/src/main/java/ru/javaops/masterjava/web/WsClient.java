@@ -29,7 +29,6 @@ public class WsClient<T> {
 
     public void init(String host, String endpointAddress) {
         this.endpointAddress = HOSTS.getString(host) + endpointAddress;
-
     }
 
     //  Post is not thread-safe (http://stackoverflow.com/a/10601916/548473)
@@ -39,6 +38,12 @@ public class WsClient<T> {
         Map<String, Object> requestContext = bp.getRequestContext();
         requestContext.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, endpointAddress);
         return port;
+    }
+
+    public static <T> void setAuth(T port, String user, String password) {
+        Map<String, Object> requestContext = ((BindingProvider) port).getRequestContext();
+        requestContext.put(BindingProvider.USERNAME_PROPERTY, user);
+        requestContext.put(BindingProvider.PASSWORD_PROPERTY, password);
     }
 
     public static WebStateException getWebStateException(Throwable t, ExceptionType type) {
