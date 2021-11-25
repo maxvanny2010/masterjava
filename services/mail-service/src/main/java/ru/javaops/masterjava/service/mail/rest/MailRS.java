@@ -1,7 +1,7 @@
 package ru.javaops.masterjava.service.mail.rest;
 
 
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 import ru.javaops.masterjava.service.mail.GroupResult;
 import ru.javaops.masterjava.service.mail.MailServiceExecutor;
 import ru.javaops.masterjava.service.mail.MailWSClient;
