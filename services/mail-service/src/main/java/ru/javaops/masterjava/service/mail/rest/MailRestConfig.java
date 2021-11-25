@@ -15,6 +15,5 @@ public class MailRestConfig extends ResourceConfig {
         SLF4JBridgeHandler.install();
         packages("ru.javaops.masterjava.service.mail.rest");
         register(MultiPartFeature.class);
-        register(MailRS.class);
     }
 }
