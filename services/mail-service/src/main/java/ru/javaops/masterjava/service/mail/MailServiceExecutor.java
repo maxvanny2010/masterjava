@@ -23,6 +23,11 @@ public class MailServiceExecutor {
 
     private static final ExecutorService mailExecutor = Executors.newFixedThreadPool(8);
 
+    public static GroupResult sendBulk(final MailObject mailObject) throws WebStateException {
+        return sendBulk(MailUtils.split(mailObject.getUsers()),
+                mailObject.getSubject(), mailObject.getBody(), MailUtils.getAttachments(mailObject.getAttachments()));
+    }
+
     public static GroupResult sendBulk(final Set<Addressee> addressees, final String subject, final String body, List<Attachment> attachments) throws WebStateException {
         final CompletionService<MailResult> completionService = new ExecutorCompletionService<>(mailExecutor);
 
@@ -38,7 +43,7 @@ public class MailServiceExecutor {
             public GroupResult call() throws WebStateException {
                 while (!futures.isEmpty()) {
                     try {
-                        Future<MailResult> future = completionService.poll(5, TimeUnit.SECONDS);
+                        Future<MailResult> future = completionService.poll(20, TimeUnit.SECONDS);
                         if (future == null) {
                             cancel(INTERRUPTED_BY_TIMEOUT, null);
                         }
@@ -76,9 +81,7 @@ public class MailServiceExecutor {
 
     public static scala.concurrent.Future<GroupResult> sendAsyncWithReply(MailObject mailObject, ExecutionContext ec) {
         // http://doc.akka.io/docs/akka/current/java/futures.html
-        return Futures.future(
-                () -> sendBulk(MailUtils.split(mailObject.getUsers()), mailObject.getSubject(), mailObject.getBody(), MailUtils.getAttachments(mailObject.getAttachments())),
-                ec);
+        return Futures.future(() -> sendBulk(mailObject), ec);
     }
 
     public static void sendAsync(MailObject mailObject) {
