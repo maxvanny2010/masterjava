@@ -5,8 +5,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import ru.javaops.masterjava.persist.ProjectTestData;
 import ru.javaops.masterjava.persist.model.Project;
-
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static ru.javaops.masterjava.persist.ProjectTestData.PROJECTS;

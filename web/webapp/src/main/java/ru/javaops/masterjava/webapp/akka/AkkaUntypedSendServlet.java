@@ -6,7 +6,6 @@ import akka.actor.Props;
 import lombok.extern.slf4j.Slf4j;
 import ru.javaops.masterjava.service.mail.GroupResult;
 import ru.javaops.masterjava.service.mail.util.MailUtils.MailObject;
-
 import javax.servlet.AsyncContext;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -16,9 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 import static ru.javaops.masterjava.webapp.WebUtil.createMailObject;
 import static ru.javaops.masterjava.webapp.WebUtil.doAsync;
@@ -77,11 +74,11 @@ public class AkkaUntypedSendServlet extends HttpServlet {
         @Override
         public Receive createReceive() {
             return receiveBuilder().match(GroupResult.class,
-                    groupResult -> {
-                        log.info("Receive result form mailActor");
-                        asyncCtx.getResponse().getWriter().write(groupResult.toString());
-                        asyncCtx.complete();
-                    })
+                            groupResult -> {
+                                log.info("Receive result form mailActor");
+                                asyncCtx.getResponse().getWriter().write(groupResult.toString());
+                                asyncCtx.complete();
+                            })
                     .build();
         }
     }

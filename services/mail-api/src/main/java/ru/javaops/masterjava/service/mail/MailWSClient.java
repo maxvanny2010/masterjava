@@ -4,11 +4,9 @@ import com.google.common.io.Resources;
 import lombok.extern.slf4j.Slf4j;
 import ru.javaops.masterjava.web.WebStateException;
 import ru.javaops.masterjava.web.WsClient;
-
 import javax.xml.namespace.QName;
 import javax.xml.ws.soap.MTOMFeature;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Slf4j
 public class MailWSClient {

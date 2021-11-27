@@ -1,7 +1,7 @@
 package ru.javaops.masterjava.util;
 
 /**
- *  @see <a href="https://github.com/diffplug/durian/blob/master/src/com/diffplug/common/base/Throwing.java">Throwing at Durian project</a>
+ * @see <a href="https://github.com/diffplug/durian/blob/master/src/com/diffplug/common/base/Throwing.java">Throwing at Durian project</a>
  */
 public interface Functions {
     /**

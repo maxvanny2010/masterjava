@@ -1,7 +1,10 @@
 package ru.javaops.masterjava.service.mail;
 
-import lombok.*;
-
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -14,7 +17,8 @@ import javax.xml.bind.annotation.XmlValue;
 @Getter
 public class Addressee {
     @XmlAttribute
-    private @NonNull String email;
+    private @NonNull
+    String email;
     @XmlValue
     private String name;
 

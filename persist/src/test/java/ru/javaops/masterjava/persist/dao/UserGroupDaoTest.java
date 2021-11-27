@@ -5,8 +5,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import ru.javaops.masterjava.persist.UserGroupTestData;
-
-import java.util.Set;
+import java.util.*;
 
 import static ru.javaops.masterjava.persist.GroupTestData.MASTERJAVA_01_ID;
 import static ru.javaops.masterjava.persist.GroupTestData.TOPJAVA_07_ID;

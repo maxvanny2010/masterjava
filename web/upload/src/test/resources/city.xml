@@ -1,4 +1,4 @@
-<City id="spb" xmlns="http://javaops.ru"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<City xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="spb"
+      xmlns="http://javaops.ru"
       xsi:schemaLocation="http://javaops.ru payload.xsd">Санкт-Петербург
 </City>

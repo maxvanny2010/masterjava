@@ -45,7 +45,8 @@
                     <xs:element name="groupResult">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="failed" type="tns:mailResult" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+                                <xs:element name="failed" type="tns:mailResult" nillable="true" minOccurs="0"
+                                            maxOccurs="unbounded"/>
                                 <xs:element name="success" type="xs:int"/>
                             </xs:sequence>
                         </xs:complexType>
@@ -75,7 +76,8 @@
             <xs:complexType name="attachment">
                 <xs:sequence>
                     <xs:element name="name" type="xs:string" minOccurs="0"/>
-                    <xs:element name="dataHandler" xmime:expectedContentTypes="application/octet-stream" type="xs:base64Binary"/>
+                    <xs:element name="dataHandler" xmime:expectedContentTypes="application/octet-stream"
+                                type="xs:base64Binary"/>
                 </xs:sequence>
             </xs:complexType>
         </xs:schema>
@@ -102,7 +104,7 @@
             <output wsam:Action="http://mail.javaops.ru/MailService/sendToGroupResponse"
                     message="tns:sendToGroupResponse"/>
             <fault wsam:Action="http://mail.javaops.ru/MailService/sendBulkMail/Fault/WebStateException"
-                   message="tns:WebStateException" name="WebStateException" />
+                   message="tns:WebStateException" name="WebStateException"/>
         </operation>
         <operation name="sendBulk">
             <input wsam:Action="http://mail.javaops.ru/MailService/sendBulkRequest"
@@ -110,7 +112,7 @@
             <output wsam:Action="http://mail.javaops.ru/MailService/sendBulkResponse"
                     message="tns:sendBulkResponse"/>
             <fault wsam:Action="http://mail.javaops.ru/MailService/sendBulkMail/Fault/WebStateException"
-                   message="tns:WebStateException" name="WebStateException" />
+                   message="tns:WebStateException" name="WebStateException"/>
         </operation>
     </portType>
     <binding name="MailServiceImplPortBinding" type="tns:MailService">

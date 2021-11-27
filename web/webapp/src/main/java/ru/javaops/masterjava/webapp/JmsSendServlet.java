@@ -2,8 +2,13 @@ package ru.javaops.masterjava.webapp;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.javaops.masterjava.service.mail.util.MailUtils.MailObject;
-
-import javax.jms.*;
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.MessageProducer;
+import javax.jms.ObjectMessage;
+import javax.jms.Session;
 import javax.naming.InitialContext;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -13,7 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.IllegalStateException;
 
 import static ru.javaops.masterjava.webapp.WebUtil.doAndWriteResponse;
 

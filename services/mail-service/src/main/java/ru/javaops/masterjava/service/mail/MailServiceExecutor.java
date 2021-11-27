@@ -9,10 +9,7 @@ import ru.javaops.masterjava.service.mail.util.MailUtils.MailObject;
 import ru.javaops.masterjava.web.WebStateException;
 import ru.javaops.masterjava.web.WsClient;
 import scala.concurrent.ExecutionContext;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.*;
 
 @Slf4j
@@ -37,7 +34,7 @@ public class MailServiceExecutor {
 
         return new Callable<GroupResult>() {
             private int success = 0;
-            private List<MailResult> failed = new ArrayList<>();
+            private final List<MailResult> failed = new ArrayList<>();
 
             @Override
             public GroupResult call() throws WebStateException {

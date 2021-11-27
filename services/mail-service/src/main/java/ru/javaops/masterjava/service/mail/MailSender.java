@@ -9,12 +9,10 @@ import ru.javaops.masterjava.persist.DBIProvider;
 import ru.javaops.masterjava.service.mail.persist.MailCase;
 import ru.javaops.masterjava.service.mail.persist.MailCaseDao;
 import ru.javaops.masterjava.web.WebStateException;
-
 import javax.mail.internet.MimeUtility;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Slf4j
 public class MailSender {
@@ -26,7 +24,7 @@ public class MailSender {
     }
 
     static String sendToGroup(Set<Addressee> to, Set<Addressee> cc, String subject, String body, List<Attachment> attachments) throws WebStateException {
-        log.info("Send mail to \'" + to + "\' cc \'" + cc + "\' subject \'" + subject + '\'' + (log.isDebugEnabled() ? "\nbody=" + body : ""));
+        log.info("Send mail to '" + to + "' cc '" + cc + "' subject '" + subject + '\'' + (log.isDebugEnabled() ? "\nbody=" + body : ""));
         String state = MailResult.OK;
         try {
             val email = MailConfig.createHtmlEmail();

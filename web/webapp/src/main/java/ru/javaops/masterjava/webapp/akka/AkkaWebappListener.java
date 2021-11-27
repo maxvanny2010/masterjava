@@ -2,7 +2,6 @@ package ru.javaops.masterjava.webapp.akka;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.javaops.masterjava.akka.AkkaActivator;
-
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;

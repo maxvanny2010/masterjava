@@ -5,9 +5,9 @@
 </head>
 <!--https://code.jquery.com/-->
 <!--http://stackoverflow.com/a/24070373/548473-->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous" async>
+<script async
+        crossorigin="anonymous"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="https://code.jquery.com/jquery-3.2.1.min.js">
 </script>
 <body>
 <section>
@@ -28,7 +28,7 @@
             <td th:text="${user.fullName}"></td>
             <td th:utext="${user.email}"></td>
             <td th:text="${user.flag}"></td>
-            <td><input type="checkbox" th:value="|${user.fullName} <${user.email}>|"/></td>
+            <td><input th:value="|${user.fullName} <${user.email}>|" type="checkbox"/></td>
         </tr>
         </tbody>
     </table>
@@ -37,20 +37,20 @@
         <input id="subject" placeholder="subject" size="30">
     </p>
     <p>
-        <textarea id="body" placeholder="mail body" cols=75 rows=5></textarea><br/>
+        <textarea cols=75 id="body" placeholder="mail body" rows=5></textarea><br/>
     </p>
     <p>
         <input id="attach" type="file">
     </p>
     <p>
-        <input type="radio" name="transport" onchange="setUrl('sendSoap');" checked>SOAP<br>
-        <input type="radio" name="transport" onchange="setUrl('/mail/rest/send');">REST<br>
-        <input type="radio" name="transport" onchange="setUrl('sendJms');">JMS<br>
-        <input type="radio" name="transport" onchange="setUrl('sendAkkaTyped');">AKKA Typed<br>
-        <input type="radio" name="transport" onchange="setUrl('sendAkkaUntyped')">AKKA Untyped<br>
+        <input checked name="transport" onchange="setUrl('sendSoap');" type="radio">SOAP<br>
+        <input name="transport" onchange="setUrl('/mail/rest/send');" type="radio">REST<br>
+        <input name="transport" onchange="setUrl('sendJms');" type="radio">JMS<br>
+        <input name="transport" onchange="setUrl('sendAkkaTyped');" type="radio">AKKA Typed<br>
+        <input name="transport" onchange="setUrl('sendAkkaUntyped')" type="radio">AKKA Untyped<br>
     </p>
     <p>
-        <button type="button" onclick="send()">Send</button>
+        <button onclick="send()" type="button">Send</button>
     </p>
     <pre id="result"></pre>
 </section>

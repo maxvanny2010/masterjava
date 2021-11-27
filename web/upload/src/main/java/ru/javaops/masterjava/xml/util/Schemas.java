@@ -2,7 +2,6 @@ package ru.javaops.masterjava.xml.util;
 
 import com.google.common.io.Resources;
 import org.xml.sax.SAXException;
-
 import javax.xml.XMLConstants;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;

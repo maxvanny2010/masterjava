@@ -1,15 +1,25 @@
 package ru.javaops.masterjava.matrix;
 
-import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Fork;
+import org.openjdk.jmh.annotations.Measurement;
+import org.openjdk.jmh.annotations.Mode;
+import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Param;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.TearDown;
+import org.openjdk.jmh.annotations.Threads;
+import org.openjdk.jmh.annotations.Timeout;
+import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.openjdk.jmh.runner.options.TimeValue;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 @Warmup(iterations = 10)
 @Measurement(iterations = 10)
@@ -23,19 +33,10 @@ public class MatrixBenchmark {
 
     // Matrix size
     private static final int MATRIX_SIZE = 1000;
-
-    @Param({"3", "4", "10"})
-    private int threadNumber;
-
     private static int[][] matrixA;
     private static int[][] matrixB;
-
-    @Setup
-    public void setUp() {
-        matrixA = MatrixUtil.create(MATRIX_SIZE);
-        matrixB = MatrixUtil.create(MATRIX_SIZE);
-    }
-
+    @Param({"3", "4", "10"})
+    private int threadNumber;
     private ExecutorService executor;
 
     public static void main(String[] args) throws RunnerException {
@@ -46,6 +47,12 @@ public class MatrixBenchmark {
                 .timeout(TimeValue.minutes(5))
                 .build();
         new Runner(options).run();
+    }
+
+    @Setup
+    public void setUp() {
+        matrixA = MatrixUtil.create(MATRIX_SIZE);
+        matrixB = MatrixUtil.create(MATRIX_SIZE);
     }
 
     //    @Benchmark

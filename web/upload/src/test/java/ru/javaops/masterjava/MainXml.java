@@ -8,8 +8,11 @@ import ru.javaops.masterjava.xml.schema.ObjectFactory;
 import ru.javaops.masterjava.xml.schema.Payload;
 import ru.javaops.masterjava.xml.schema.Project;
 import ru.javaops.masterjava.xml.schema.User;
-import ru.javaops.masterjava.xml.util.*;
-
+import ru.javaops.masterjava.xml.util.JaxbParser;
+import ru.javaops.masterjava.xml.util.JaxbUnmarshaller;
+import ru.javaops.masterjava.xml.util.Schemas;
+import ru.javaops.masterjava.xml.util.StaxStreamProcessor;
+import ru.javaops.masterjava.xml.util.XsltProcessor;
 import javax.xml.stream.events.XMLEvent;
 import java.io.InputStream;
 import java.io.Writer;
@@ -19,7 +22,15 @@ import java.nio.file.Paths;
 import java.util.*;
 
 import static com.google.common.base.Strings.nullToEmpty;
-import static j2html.TagCreator.*;
+import static j2html.TagCreator.body;
+import static j2html.TagCreator.h1;
+import static j2html.TagCreator.head;
+import static j2html.TagCreator.html;
+import static j2html.TagCreator.table;
+import static j2html.TagCreator.td;
+import static j2html.TagCreator.th;
+import static j2html.TagCreator.title;
+import static j2html.TagCreator.tr;
 
 public class MainXml {
 
@@ -112,7 +123,7 @@ public class MainXml {
 
     private static String toHtml(Set<User> users, String projectName) {
         final ContainerTag table = table().with(
-                tr().with(th("FullName"), th("email")))
+                        tr().with(th("FullName"), th("email")))
                 .attr("border", "1")
                 .attr("cellpadding", "8")
                 .attr("cellspacing", "0");

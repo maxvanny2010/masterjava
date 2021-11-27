@@ -3,11 +3,10 @@ package ru.javaops.masterjava.xml.util;
 import com.google.common.io.Resources;
 import org.junit.Test;
 import org.w3c.dom.NodeList;
-
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import java.io.InputStream;
-import java.util.stream.IntStream;
+import java.util.stream.*;
 
 public class XPathProcessorTest {
     @Test

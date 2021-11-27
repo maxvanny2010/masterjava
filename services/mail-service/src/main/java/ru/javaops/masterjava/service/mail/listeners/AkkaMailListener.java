@@ -8,7 +8,6 @@ import ru.javaops.masterjava.service.mail.GroupResult;
 import ru.javaops.masterjava.service.mail.MailRemoteService;
 import ru.javaops.masterjava.service.mail.MailServiceExecutor;
 import ru.javaops.masterjava.service.mail.util.MailUtils;
-
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -36,12 +35,12 @@ public class AkkaMailListener implements ServletContextListener {
         @Override
         public Receive createReceive() {
             return receiveBuilder().match(MailUtils.MailObject.class,
-                    mailObject -> {
-                        log.info("Receive mail form webappActor");
-                        GroupResult groupResult = MailServiceExecutor.sendBulk(mailObject);
-                        log.info("Send result to webappActor");
-                        sender().tell(groupResult, self());
-                    })
+                            mailObject -> {
+                                log.info("Receive mail form webappActor");
+                                GroupResult groupResult = MailServiceExecutor.sendBulk(mailObject);
+                                log.info("Send result to webappActor");
+                                sender().tell(groupResult, self());
+                            })
                     .build();
         }
     }

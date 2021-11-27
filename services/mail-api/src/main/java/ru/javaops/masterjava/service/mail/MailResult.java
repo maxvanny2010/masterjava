@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -16,12 +15,11 @@ import java.io.Serializable;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Getter
 public class MailResult implements Serializable {
-    private static final long serialVersionUID = 1L;
-
     public static final String OK = "OK";
-
+    private static final long serialVersionUID = 1L;
     @XmlAttribute
-    private @NonNull String email;
+    private @NonNull
+    String email;
     @XmlValue
     private String result;
 

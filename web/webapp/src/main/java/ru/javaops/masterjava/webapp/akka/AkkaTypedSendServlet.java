@@ -7,7 +7,6 @@ import ru.javaops.masterjava.service.mail.util.MailUtils.MailObject;
 import ru.javaops.masterjava.util.Exceptions;
 import scala.concurrent.Await;
 import scala.concurrent.duration.Duration;
-
 import javax.servlet.AsyncContext;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -18,7 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static ru.javaops.masterjava.webapp.WebUtil.*;
+import static ru.javaops.masterjava.webapp.WebUtil.createMailObject;
+import static ru.javaops.masterjava.webapp.WebUtil.doAndWriteResponse;
+import static ru.javaops.masterjava.webapp.WebUtil.doAsync;
 import static ru.javaops.masterjava.webapp.akka.AkkaWebappListener.akkaActivator;
 
 @WebServlet(value = "/sendAkkaTyped", loadOnStartup = 1, asyncSupported = true)
@@ -42,7 +43,7 @@ public class AkkaTypedSendServlet extends HttpServlet {
             MailObject mailObject = createMailObject(req);
 
             final AsyncContext ac = req.startAsync();
-            ac.start(Exceptions.<IOException>wrap(() -> {
+            ac.start(Exceptions.wrap(() -> {
                 doAndWriteResponse((HttpServletResponse) ac.getResponse(), () -> {
                     scala.concurrent.Future<GroupResult> future = mailService.sendBulk(mailObject);
                     log.info("Receive future, await result ...");

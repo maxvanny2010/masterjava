@@ -1,8 +1,6 @@
 package ru.javaops.masterjava.matrix;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 public class MainMatrix {
     private static final int MATRIX_SIZE = 1000;

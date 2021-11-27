@@ -3,13 +3,12 @@ package ru.javaops.masterjava.web;
 
 import lombok.Getter;
 import ru.javaops.masterjava.ExceptionType;
-
 import javax.xml.ws.WebFault;
 
 @WebFault(name = "webStateException", targetNamespace = "http://common.javaops.ru/")
 @Getter
 public class WebStateException extends Exception {
-    private FaultInfo faultInfo;
+    private final FaultInfo faultInfo;
 
     public WebStateException(String cause, FaultInfo faultInfo) {
         super(cause);

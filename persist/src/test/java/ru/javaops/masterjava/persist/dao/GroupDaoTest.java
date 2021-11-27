@@ -5,8 +5,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import ru.javaops.masterjava.persist.GroupTestData;
 import ru.javaops.masterjava.persist.model.Group;
-
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static ru.javaops.masterjava.persist.GroupTestData.GROUPS;

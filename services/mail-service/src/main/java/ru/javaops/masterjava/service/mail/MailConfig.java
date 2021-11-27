@@ -6,7 +6,6 @@ import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import ru.javaops.masterjava.config.Configs;
-
 import javax.mail.Authenticator;
 import java.nio.charset.StandardCharsets;
 
@@ -34,6 +33,10 @@ public class MailConfig {
         fromName = conf.getString("fromName");
     }
 
+    public static HtmlEmail createHtmlEmail() throws EmailException {
+        return INSTANCE.prepareEmail(new HtmlEmail());
+    }
+
     public <T extends Email> T prepareEmail(T email) throws EmailException {
         email.setFrom(username, fromName);
         email.setHostName(host);
@@ -48,10 +51,6 @@ public class MailConfig {
         email.setAuthenticator(auth);
         email.setCharset(StandardCharsets.UTF_8.name());
         return email;
-    }
-
-    public static HtmlEmail createHtmlEmail() throws EmailException {
-        return INSTANCE.prepareEmail(new HtmlEmail());
     }
 
     @Override

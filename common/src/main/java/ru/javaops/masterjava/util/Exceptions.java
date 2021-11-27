@@ -3,7 +3,7 @@ package ru.javaops.masterjava.util;
 import lombok.experimental.UtilityClass;
 
 /**
- *  @see <a href="https://github.com/diffplug/durian/blob/master/src/com/diffplug/common/base/Errors.java">full Errors at Durian project</a>
+ * @see <a href="https://github.com/diffplug/durian/blob/master/src/com/diffplug/common/base/Errors.java">full Errors at Durian project</a>
  */
 @UtilityClass
 public class Exceptions {

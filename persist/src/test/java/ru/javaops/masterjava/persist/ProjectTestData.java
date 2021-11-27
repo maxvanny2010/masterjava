@@ -3,8 +3,7 @@ package ru.javaops.masterjava.persist;
 import com.google.common.collect.ImmutableMap;
 import ru.javaops.masterjava.persist.dao.ProjectDao;
 import ru.javaops.masterjava.persist.model.Project;
-
-import java.util.Map;
+import java.util.*;
 
 public class ProjectTestData {
     public static Project TOPJAVA;

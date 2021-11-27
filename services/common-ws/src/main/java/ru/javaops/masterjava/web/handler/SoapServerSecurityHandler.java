@@ -3,17 +3,15 @@ package ru.javaops.masterjava.web.handler;
 import com.sun.xml.ws.api.handler.MessageHandlerContext;
 import lombok.extern.slf4j.Slf4j;
 import ru.javaops.masterjava.web.AuthUtil;
-
 import javax.xml.ws.handler.MessageContext;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static ru.javaops.masterjava.web.AuthUtil.encodeBasicAuthHeader;
 
 @Slf4j
 abstract public class SoapServerSecurityHandler extends SoapBaseHandler {
 
-    private String authHeader;
+    private final String authHeader;
 
     public SoapServerSecurityHandler(String user, String password) {
         this(encodeBasicAuthHeader(user, password));

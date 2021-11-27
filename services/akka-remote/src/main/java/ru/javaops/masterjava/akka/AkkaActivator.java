@@ -17,7 +17,7 @@ import java.util.concurrent.*;
 public class AkkaActivator {
     private static final String AKKA_CONF = "akka.conf";
 
-    private ActorSystem system;
+    private final ActorSystem system;
 
     private AkkaActivator(String actorSystemName, String nodeName) {
         log.info("Start AKKA System {} : {}", actorSystemName, nodeName);

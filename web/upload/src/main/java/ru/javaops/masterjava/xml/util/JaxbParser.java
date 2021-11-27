@@ -1,7 +1,6 @@
 package ru.javaops.masterjava.xml.util;
 
 import org.xml.sax.SAXException;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.stream.StreamSource;
@@ -16,8 +15,8 @@ import java.io.StringReader;
  */
 public class JaxbParser {
 
-    private JAXBContext ctx;
     protected Schema schema;
+    private JAXBContext ctx;
 
     public JaxbParser(Class... classesToBeBound) {
         try {

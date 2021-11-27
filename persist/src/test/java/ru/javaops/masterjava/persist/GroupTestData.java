@@ -3,8 +3,7 @@ package ru.javaops.masterjava.persist;
 import com.google.common.collect.ImmutableMap;
 import ru.javaops.masterjava.persist.dao.GroupDao;
 import ru.javaops.masterjava.persist.model.Group;
-
-import java.util.Map;
+import java.util.*;
 
 import static ru.javaops.masterjava.persist.ProjectTestData.MASTERJAVA_ID;
 import static ru.javaops.masterjava.persist.ProjectTestData.TOPJAVA_ID;

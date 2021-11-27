@@ -1,12 +1,10 @@
 package ru.javaops.masterjava.service.mail;
 
 import ru.javaops.masterjava.web.WebStateException;
-
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @WebService(targetNamespace = "http://mail.javaops.ru/")
 //@SOAPBinding(

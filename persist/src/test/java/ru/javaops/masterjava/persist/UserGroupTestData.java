@@ -2,11 +2,12 @@ package ru.javaops.masterjava.persist;
 
 import ru.javaops.masterjava.persist.dao.UserGroupDao;
 import ru.javaops.masterjava.persist.model.UserGroup;
+import java.util.*;
 
-import java.util.List;
-import java.util.Set;
-
-import static ru.javaops.masterjava.persist.GroupTestData.*;
+import static ru.javaops.masterjava.persist.GroupTestData.MASTERJAVA_01_ID;
+import static ru.javaops.masterjava.persist.GroupTestData.TOPJAVA_06_ID;
+import static ru.javaops.masterjava.persist.GroupTestData.TOPJAVA_07_ID;
+import static ru.javaops.masterjava.persist.GroupTestData.TOPJAVA_08_ID;
 import static ru.javaops.masterjava.persist.dao.UserGroupDao.toUserGroups;
 
 public class UserGroupTestData {

@@ -6,13 +6,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import ru.javaops.masterjava.service.mail.util.MailUtils.MailObject;
 import ru.javaops.masterjava.util.Functions;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
-import java.util.AbstractMap.SimpleImmutableEntry;
+import java.util.AbstractMap.*;
 
 import static com.google.common.base.Preconditions.checkArgument;
 

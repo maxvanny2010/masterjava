@@ -10,7 +10,7 @@ import java.io.Reader;
 import java.io.StringReader;
 
 public class JaxbUnmarshaller {
-    private Unmarshaller unmarshaller;
+    private final Unmarshaller unmarshaller;
 
     public JaxbUnmarshaller(JAXBContext ctx) throws JAXBException {
         unmarshaller = ctx.createUnmarshaller();
@@ -29,7 +29,7 @@ public class JaxbUnmarshaller {
     }
 
     public <T> T unmarshal(String str) throws JAXBException {
-        return (T) unmarshal(new StringReader(str));
+        return unmarshal(new StringReader(str));
     }
 
     public <T> T unmarshal(XMLStreamReader reader, Class<T> elementClass) throws JAXBException {

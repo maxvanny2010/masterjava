@@ -6,10 +6,8 @@ import ru.javaops.masterjava.persist.DBIProvider;
 import ru.javaops.masterjava.persist.dao.CityDao;
 import ru.javaops.masterjava.persist.model.City;
 import ru.javaops.masterjava.xml.util.StaxStreamProcessor;
-
 import javax.xml.stream.XMLStreamException;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 public class CityProcessor {

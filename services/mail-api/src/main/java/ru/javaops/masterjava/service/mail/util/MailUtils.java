@@ -9,32 +9,22 @@ import lombok.Data;
 import org.apache.commons.io.input.CloseShieldInputStream;
 import ru.javaops.masterjava.service.mail.Addressee;
 import ru.javaops.masterjava.service.mail.Attachment;
-
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
-import java.io.*;
-import java.util.AbstractMap.SimpleImmutableEntry;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
+import java.util.AbstractMap.*;
+import java.util.*;
+import java.util.stream.*;
 
 public class MailUtils {
 
     public static Set<Addressee> split(String addressees) {
         Iterable<String> split = Splitter.on(',').trimResults().omitEmptyStrings().split(addressees);
         return ImmutableSet.copyOf(Iterables.transform(split, Addressee::new));
-    }
-
-    @Data
-    @AllArgsConstructor
-    public static class MailObject implements Serializable {
-        private static final long serialVersionUID = 1L;
-
-        private @NotNull String users;
-        private String subject;
-        private @NotNull String body;
-        //  http://stackoverflow.com/questions/521171/a-java-collection-of-value-pairs-tuples
-        private List<SimpleImmutableEntry<String, byte[]>> attachments;
     }
 
     public static List<Attachment> getAttachments(List<SimpleImmutableEntry<String, byte[]>> attachments) {
@@ -66,5 +56,19 @@ public class MailUtils {
         default String getName() {
             return "";
         }
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class MailObject implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        private @NotNull
+        String users;
+        private String subject;
+        private @NotNull
+        String body;
+        //  http://stackoverflow.com/questions/521171/a-java-collection-of-value-pairs-tuples
+        private List<SimpleImmutableEntry<String, byte[]>> attachments;
     }
 }

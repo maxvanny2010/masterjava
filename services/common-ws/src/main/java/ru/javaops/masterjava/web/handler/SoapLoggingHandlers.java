@@ -7,16 +7,14 @@ import com.sun.xml.ws.api.message.Message;
 import com.sun.xml.ws.api.streaming.XMLStreamWriterFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.event.Level;
-
 import javax.xml.stream.XMLStreamWriter;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.EnumMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Refactored from:
- *
+ * <p>
  * <p/>
  * This simple LoggingHandler will log the contents of incoming
  * and outgoing messages. This is implemented as a MessageHandler
@@ -24,12 +22,6 @@ import java.util.Map;
  */
 @Slf4j
 public abstract class SoapLoggingHandlers extends SoapBaseHandler {
-
-    private final Level loggingLevel;
-
-    protected SoapLoggingHandlers(Level loggingLevel) {
-        this.loggingLevel = loggingLevel;
-    }
 
     private static final Map<Level, HANDLER> HANDLER_MAP = new EnumMap<Level, HANDLER>(Level.class) {
         {
@@ -40,6 +32,25 @@ public abstract class SoapLoggingHandlers extends SoapBaseHandler {
             put(Level.ERROR, HANDLER.ERROR);
         }
     };
+    private final Level loggingLevel;
+
+    protected SoapLoggingHandlers(Level loggingLevel) {
+        this.loggingLevel = loggingLevel;
+    }
+
+    abstract protected boolean isRequest(boolean isOutbound);
+
+    @Override
+    public boolean handleMessage(MessageHandlerContext mhc) {
+        HANDLER_MAP.get(loggingLevel).handleMessage(mhc, isRequest(isOutbound(mhc)));
+        return true;
+    }
+
+    @Override
+    public boolean handleFault(MessageHandlerContext mhc) {
+        HANDLER_MAP.get(loggingLevel).handleFault(mhc);
+        return true;
+    }
 
     protected enum HANDLER {
         NONE {
@@ -90,10 +101,6 @@ public abstract class SoapLoggingHandlers extends SoapBaseHandler {
             }
         };
 
-        public abstract void handleMessage(MessageHandlerContext mhc, boolean isRequest);
-
-        public abstract void handleFault(MessageHandlerContext mhc);
-
         protected static String getMessageText(Message msg) {
             try {
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -106,20 +113,10 @@ public abstract class SoapLoggingHandlers extends SoapBaseHandler {
                 return null;
             }
         }
-    }
 
-    abstract protected boolean isRequest(boolean isOutbound);
+        public abstract void handleMessage(MessageHandlerContext mhc, boolean isRequest);
 
-    @Override
-    public boolean handleMessage(MessageHandlerContext mhc) {
-        HANDLER_MAP.get(loggingLevel).handleMessage(mhc, isRequest(isOutbound(mhc)));
-        return true;
-    }
-
-    @Override
-    public boolean handleFault(MessageHandlerContext mhc) {
-        HANDLER_MAP.get(loggingLevel).handleFault(mhc);
-        return true;
+        public abstract void handleFault(MessageHandlerContext mhc);
     }
 
     public static class ClientHandler extends SoapLoggingHandlers {

@@ -14,15 +14,11 @@ import ru.javaops.masterjava.persist.model.UserGroup;
 import ru.javaops.masterjava.persist.model.type.UserFlag;
 import ru.javaops.masterjava.upload.PayloadProcessor.FailedEmails;
 import ru.javaops.masterjava.xml.util.StaxStreamProcessor;
-
 import javax.xml.bind.JAXBException;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.XMLEvent;
 import java.util.*;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 import static ru.javaops.masterjava.upload.PayloadProcessor.jaxbParser;
 
@@ -30,9 +26,9 @@ import static ru.javaops.masterjava.upload.PayloadProcessor.jaxbParser;
 public class UserProcessor {
     private static final int NUMBER_THREADS = 4;
 
-    private static UserDao userDao = DBIProvider.getDao(UserDao.class);
+    private static final UserDao userDao = DBIProvider.getDao(UserDao.class);
 
-    private ExecutorService executorService = Executors.newFixedThreadPool(NUMBER_THREADS);
+    private final ExecutorService executorService = Executors.newFixedThreadPool(NUMBER_THREADS);
 
     /*
      * return failed users chunks

@@ -3,14 +3,13 @@ package ru.javaops.masterjava.service.mail;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import ru.javaops.masterjava.web.WebStateException;
-
 import javax.activation.DataHandler;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
+import java.util.*;
 
 public class MailServiceClient {
 

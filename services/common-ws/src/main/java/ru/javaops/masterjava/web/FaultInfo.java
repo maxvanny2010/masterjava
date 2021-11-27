@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import ru.javaops.masterjava.ExceptionType;
-
 import javax.xml.bind.annotation.XmlType;
 import java.io.Serializable;
 
@@ -16,7 +15,8 @@ import java.io.Serializable;
 public class FaultInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private @NonNull ExceptionType type;
+    private @NonNull
+    ExceptionType type;
 
     @Override
     public String toString() {

@@ -1,6 +1,11 @@
 package ru.javaops.masterjava.persist.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
@@ -9,6 +14,8 @@ import lombok.*;
 @ToString(callSuper = true)
 public class Project extends BaseEntity {
 
-    @NonNull private String name;
-    @NonNull private String description;
+    @NonNull
+    private String name;
+    @NonNull
+    private String description;
 }

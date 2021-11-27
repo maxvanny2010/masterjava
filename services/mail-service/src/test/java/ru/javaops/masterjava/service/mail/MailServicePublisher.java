@@ -3,11 +3,10 @@ package ru.javaops.masterjava.service.mail;
 import com.google.common.collect.ImmutableList;
 import ru.javaops.masterjava.config.Configs;
 import ru.javaops.masterjava.persist.DBITestProvider;
-
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.ws.Endpoint;
-import java.util.List;
+import java.util.*;
 
 public class MailServicePublisher {
 
