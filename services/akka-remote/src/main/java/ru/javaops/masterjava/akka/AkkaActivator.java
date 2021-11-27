@@ -39,6 +39,11 @@ public class AkkaActivator {
         return system.actorOf(Props.create(actorClass), name);
     }
 
+    public <T> ActorRef startActor(Props props) {
+        log.info("Start new AKKA actor");
+        return system.actorOf(props);
+    }
+
     public <T> T getTypedRef(Class<T> typedClass, String path) {
         log.info("Get typed reference with path={}", path);
         return TypedActor$.MODULE$.get(system).typedActorOf(new TypedProps<>(typedClass), system.provider().resolveActorRef(path));
